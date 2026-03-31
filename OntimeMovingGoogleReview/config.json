@@ -1,0 +1,66 @@
+{
+  "business": {
+    "name": "OnTime Moving & Storage",
+    "tagline": "Stress-Free Moving in the Lower Mainland",
+    "phone": "(604) 505-0026",
+    "email": "info@ontime-moving.com",
+    "address": "104-1525 Broadway St, Port Coquitlam, BC V3C 6M2",
+    "googleMapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2604.2822926807147!2d-122.76993!3d49.26251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5485d60c7bda081d%3A0x31940ea9dfb00809!2sOnTime%20Moving%20%26%20Storage!5e0!3m2!1sen!2sca!4v1645123456789!5m2!1sen!2sca"
+  },
+  "googleReviews": {
+    "url": "https://www.google.com/search?q=ontime+moving#lrd=0x5485d60c7bda081d:0x31940ea9dfb00809,1",
+    "viewUrl": "https://www.google.com/maps/place/OnTime+Moving+%26+Storage/@49.26251,-122.76993,15z/data=!4m8!3m7!1s0x5485d60c7bda081d:0x31940ea9dfb00809!8m2!3d49.26251!4d-122.76993!9m1!1b1!16s%2Fg%2F11b6yq8w0q"
+  },
+  "trustMetrics": {
+    "yearsInBusiness": {
+      "label": "Years in Business",
+      "value": "22+",
+      "icon": "📅"
+    },
+    "happyCustomers": {
+      "label": "Happy Customers",
+      "value": "11,000+",
+      "icon": "😊"
+    },
+    "bbbRating": {
+      "label": "BBB Accreditation",
+      "value": "A+",
+      "icon": "🏆"
+    },
+    "licensed": {
+      "label": "Licensed & Insured",
+      "value": "100%",
+      "icon": "✅"
+    }
+  },
+  "services": [
+    {
+      "title": "Residential Moving",
+      "description": "Complete home moving services with professional packing, careful transport, and white-glove delivery to your new residence."
+    },
+    {
+      "title": "Commercial Moving",
+      "description": "Minimize downtime with our efficient office and business relocation services, including IT equipment and furniture."
+    },
+    {
+      "title": "Storage Solutions",
+      "description": "Secure, climate-controlled storage facilities for short-term or long-term needs during your transition."
+    },
+    {
+      "title": "Packing Services",
+      "description": "Professional packing with quality materials to ensure your belongings arrive safely at your new location."
+    }
+  ],
+  "api": {
+    "baseUrl": "http://localhost:5000/api"
+  },
+  "email": {
+    "enabled": false,
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "smtp_username": "",
+    "smtp_password": "",
+    "from_email": "info@ontime-moving.com",
+    "_comment": "To enable email notifications: 1) Set enabled to true, 2) Add SMTP credentials. For Gmail: use App Password (https://support.google.com/accounts/answer/185833)"
+  }
+}

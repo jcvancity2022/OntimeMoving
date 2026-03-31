@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - OnTime Moving & Storage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d32f2f;
+            --primary-dark: #b71c1c;
+            --dark-gray: #111827;
+            --light-gray: #f9fafb;
+            --medium-gray: #6b7280;
+            --white: #fff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-hover: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background: var(--white);
+        }
+
+        .top-bar {
+            background: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .top-contact {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-contact a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .top-contact a:hover {
+            color: var(--primary);
+        }
+
+        .top-nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .top-nav a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .top-nav a:hover, .top-nav a.active {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white) !important;
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            background: #b71c1c;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            color: var(--white);
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .content-section {
+            padding: 60px 20px;
+        }
+
+        .content-section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-info {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            min-width: 30px;
+        }
+
+        .contact-details h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark-gray);
+        }
+
+        .contact-details p {
+            color: var(--medium-gray);
+            line-height: 1.6;
+        }
+
+        .contact-details a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--light-gray);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #b71c1c;
+        }
+
+        .map-section {
+            padding: 0;
+            height: 450px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .hours-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+        }
+
+        .hours-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .hours-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+
+        .day {
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .time {
+            color: var(--medium-gray);
+        }
+
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 40px 20px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            font-size: 1.5rem;
+        }
+
+        .social-links a {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+
+        footer a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 25px;
+            }
+
+            .top-contact,
+            .top-nav {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <a href="index.html" class="logo" style="text-decoration: none;">OnTime Moving & Storage</a>
+                <div class="top-contact">
+                    <a href="tel:+16045050026">📞 (604) 505-0026</a>
+                    <a href="mailto:info@ontime-moving.com">✉️ info@ontime-moving.com</a>
+                </div>
+                <nav class="top-nav">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="reviews.html">Reviews</a>
+                    <a href="contact.html" class="active">Contact</a>
+                    <a href="#quoteForm" class="nav-cta">Free Quote</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Get in Touch</h1>
+            <p>Ready to make your move stress-free? Contact us today for a free quote!</p>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="content-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p><a href="tel:6045050026">(604) 505-0026</a></p>
+                            <p style="font-size: 0.9rem; margin-top: 5px;">Monday - Sunday: 8:00 AM - 8:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p><a href="mailto:info@ontime-moving.com">info@ontime-moving.com</a></p>
+                            <p style="font-size: 0.9rem; margin-top: 5px;">We respond within 24 hours</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div class="contact-details">
+                            <h3>Address</h3>
+                            <p>104-1525 Broadway St<br>Port Coquitlam, BC V3C 6M2<br>Canada</p>
+                        </div>
+                    </div>
+
+                    <div class="hours-card">
+                        <h3>Business Hours</h3>
+                        <div class="hours-list">
+                            <div class="hours-item">
+                                <span class="day">Monday - Friday</span>
+                                <span class="time">8:00 AM - 8:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Saturday</span>
+                                <span class="time">8:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Sunday</span>
+                                <span class="time">9:00 AM - 5:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2>Request a Free Quote</h2>
+                    <form id="quoteForm" onsubmit="return handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="movingFrom">Moving From (Address) *</label>
+                            <input type="text" id="movingFrom" name="movingFrom" placeholder="123 Main St, City, Province" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="movingTo">Moving To (Address) *</label>
+                            <input type="text" id="movingTo" name="movingTo" placeholder="456 Oak Ave, City, Province" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="moveSize">Move Size *</label>
+                            <select id="moveSize" name="moveSize" required>
+                                <option value="">Select move size</option>
+                                <option value="studio">Studio Apartment</option>
+                                <option value="1-bedroom">1 Bedroom</option>
+                                <option value="2-bedroom">2 Bedroom</option>
+                                <option value="3-bedroom">3 Bedroom</option>
+                                <option value="house">House (4+ Bedrooms)</option>
+                                <option value="office">Office/Commercial</option>
+                                <option value="storage">Storage Unit</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="moveDate">Preferred Move Date *</label>
+                            <input type="date" id="moveDate" name="moveDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="preferredTime">Preferred Time</label>
+                            <select id="preferredTime" name="preferredTime">
+                                <option value="">Select preferred time</option>
+                                <option value="morning">Morning (8AM - 12PM)</option>
+                                <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="specialInstructions">Special Instructions</label>
+                            <textarea id="specialInstructions" name="specialInstructions" placeholder="Fragile items, heavy furniture, stairs, parking restrictions, etc."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Additional Notes</label>
+                            <textarea id="message" name="message" placeholder="Any other details we should know..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Get Your Free Quote</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2604.2822926807147!2d-122.76993!3d49.26251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5485d60c7bda081d%3A0x31940ea9dfb00809!2sOnTime%20Moving%20%26%20Storage!5e0!3m2!1sen!2sca!4v1645123456789!5m2!1sen!2sca"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>OnTime Moving & Storage</h3>
+                    <p>Professional moving services in the Lower Mainland for over 22 years. Licensed, insured, and trusted by thousands of customers.</p>
+                    <p style="margin-top: 15px;">104-1525 Broadway St<br>Port Coquitlam, BC V3C 6M2</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="contact.html">Contact & Quote</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Residential Moving</a></li>
+                        <li><a href="services.html">Commercial Moving</a></li>
+                        <li><a href="services.html">Storage Solutions</a></li>
+                        <li><a href="services.html">Packing Services</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><strong>Address:</strong><br>104-1525 Broadway St.<br>Port Coquitlam, BC V3C 6P6</p>
+                    <p style="margin-top: 10px;"><strong>Phone:</strong><br><a href="tel:6045050026" style="color: #ccc;">(604) 505-0026</a></p>
+                    <p style="margin-top: 10px;"><strong>Email:</strong><br><a href="mailto:info@ontime-moving.com" style="color: #ccc;">info@ontime-moving.com</a></p>
+                    <p style="margin-top: 15px;">
+                        <a href="https://www.google.com/search?q=ontime+moving#lrd=0x5485d60c7bda081d:0x31940ea9dfb00809,1" target="_blank" style="color: #ccc;">⭐ Leave us a review on Google</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 OnTime Moving Corp. All rights reserved. | Licensed & Insured | BBB A+ Accredited</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">OnTime in Canada - Port Coquitlam, BC</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            
+            // Map form fields to API fields
+            const bookingData = {
+                customer_name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                moving_from: formData.get('movingFrom'),
+                moving_to: formData.get('movingTo'),
+                move_date: formData.get('moveDate'),
+                move_size: formData.get('moveSize'),
+                preferred_time: formData.get('preferredTime'),
+                special_instructions: formData.get('specialInstructions'),
+                notes: formData.get('message'),
+                status: 'pending'
+            };
+            
+            // Disable submit button
+            const submitBtn = event.target.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            
+            try {
+                // Send to booking API
+                const response = await fetch(`${API_BASE_URL}/booking`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(bookingData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success message
+                    alert('Thank you! Your booking request has been submitted successfully. Booking ID: ' + result.booking_id + '. We will contact you shortly at ' + bookingData.phone + ' to confirm your move details.');
+                    // Reset form
+                    event.target.reset();
+                } else {
+                    // Show error message
+                    alert('Error: ' + (result.error || 'Failed to submit booking. Please try again or call us directly.'));
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                alert('Failed to submit booking. The booking system may not be running. Please call us directly at (604) 505-0026 or try again later.');
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+            
+            return false;
+        }
+
+        // Set minimum date to today for the date picker
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('moveDate');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - OnTime Moving & Storage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d32f2f;
+            --primary-dark: #b71c1c;
+            --dark-gray: #111827;
+            --light-gray: #f9fafb;
+            --medium-gray: #6b7280;
+            --white: #fff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-hover: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background: var(--white);
+        }
+
+        /* Navigation Header */
+        .top-bar {
+            background: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .top-contact {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-contact a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .top-contact a:hover {
+            color: var(--primary);
+        }
+
+        .top-nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .top-nav a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .top-nav a:hover, .top-nav a.active {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white) !important;
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            background: #b71c1c;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            color: var(--white);
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .about-gallery {
+            padding: 30px 20px 10px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .gallery-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            min-height: 320px;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .intro-panel {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .intro-points {
+            display: grid;
+            gap: 14px;
+        }
+
+        .intro-point {
+            background: var(--white);
+            border-left: 4px solid var(--primary);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 18px 20px;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 60px 20px;
+        }
+
+        .content-section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .content-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: var(--medium-gray);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .value-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-box {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 40px 20px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            font-size: 1.5rem;
+        }
+
+        .social-links a {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+
+        footer a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .content-section h2 {
+                font-size: 2rem;
+            }
+
+            .top-contact,
+            .top-nav {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .gallery-grid,
+            .intro-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-card {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <a href="index.html" class="logo" style="text-decoration: none;">OnTime Moving & Storage</a>
+                <div class="top-contact">
+                    <a href="tel:+16045050026">📞 (604) 505-0026</a>
+                    <a href="mailto:info@ontime-moving.com">✉️ info@ontime-moving.com</a>
+                </div>
+                <nav class="top-nav">
+                    <a href="index.html">Home</a>
+                    <a href="about.html" class="active">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="reviews.html">Reviews</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="contact.html#quoteForm" class="nav-cta">Free Quote</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>About OnTime Moving & Storage</h1>
+            <p>Your trusted moving partner for over 22 years, serving the Lower Mainland with excellence and dedication</p>
+        </div>
+    </section>
+
+    <section class="about-gallery">
+        <div class="container">
+            <div class="gallery-grid">
+                <figure class="gallery-card">
+                    <img src="images/aboutpage/teamphoto.png" alt="OnTime Moving team photo inside the warehouse">
+                </figure>
+                <figure class="gallery-card">
+                    <img src="images/aboutpage/movingontimeimage.png" alt="OnTime Moving team and truck on location">
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="content-section">
+        <div class="container">
+            <h2>Our Story</h2>
+            <div class="intro-panel">
+                <div>
+                    <p>
+                        Since our founding over two decades ago, OnTime Moving & Storage has been committed to making moving stress-free for families and businesses throughout the Lower Mainland. What started as a small local moving company has grown into one of the most trusted names in the industry, thanks to our unwavering commitment to customer satisfaction and professional service.
+                    </p>
+                    <p>
+                        We've successfully completed over 11,000 moves, each one treated with the same care and attention as if we were moving our own belongings. Our A+ BBB rating and hundreds of 5-star reviews reflect our dedication to excellence in every aspect of our service.
+                    </p>
+                </div>
+                <div class="intro-points">
+                    <div class="intro-point">22+ years serving families and businesses across the Lower Mainland</div>
+                    <div class="intro-point">Professional moving, packing, and storage under one roof</div>
+                    <div class="intro-point">BBB A+ accredited with a reputation built on reliability</div>
+                    <div class="intro-point">Experienced crews focused on careful, efficient service</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="content-section">
+        <div class="container">
+            <h2>Our Core Values</h2>
+            <div class="two-column">
+                <div class="value-card">
+                    <h3>🤝 Customer First</h3>
+                    <p>Your satisfaction is our top priority. We listen to your needs and tailor our services to exceed your expectations on every move.</p>
+                </div>
+                <div class="value-card">
+                    <h3>💪 Professional Excellence</h3>
+                    <p>Our team is trained, licensed, and insured. We use the best equipment and techniques to ensure your belongings are handled with care.</p>
+                </div>
+                <div class="value-card">
+                    <h3>⏰ Punctuality & Reliability</h3>
+                    <p>We understand that timing matters. We show up on time, work efficiently, and deliver on our promises every single time.</p>
+                </div>
+                <div class="value-card">
+                    <h3>💯 Integrity & Transparency</h3>
+                    <p>No hidden fees, no surprises. We provide clear, upfront pricing and honest communication throughout your entire moving experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="content-section">
+        <div class="container">
+            <h2>Our Track Record</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-number">22+</span>
+                    <span class="stat-label">Years in Business</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">11,000+</span>
+                    <span class="stat-label">Happy Customers</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">A+</span>
+                    <span class="stat-label">BBB Accreditation</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Licensed & Insured</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="content-section">
+        <div class="container">
+            <h2>Why Choose OnTime Moving?</h2>
+            <div class="two-column">
+                <div>
+                    <h3>Experience You Can Trust</h3>
+                    <p>With over 22 years in the industry, we've seen it all and know how to handle every moving challenge. Our experienced team brings expertise and professionalism to every job.</p>
+                    
+                    <h3>Comprehensive Services</h3>
+                    <p>From residential moves to commercial relocations, packing services to secure storage solutions, we offer everything you need under one roof.</p>
+                </div>
+                <div>
+                    <h3>Local Knowledge</h3>
+                    <p>As a Lower Mainland-based company, we know the area inside and out. We understand local regulations, traffic patterns, and the best routes to ensure efficient moves.</p>
+                    
+                    <h3>Peace of Mind</h3>
+                    <p>Fully licensed, insured, and bonded, we provide protection for your belongings and peace of mind for you. Our A+ BBB rating speaks to our commitment to customer satisfaction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>OnTime Moving & Storage</h3>
+                    <p>Professional moving services in the Lower Mainland for over 22 years. Licensed, insured, and trusted by thousands of customers.</p>
+                    <p style="margin-top: 15px;">104-1525 Broadway St<br>Port Coquitlam, BC V3C 6M2</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="contact.html">Contact & Quote</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Residential Moving</a></li>
+                        <li><a href="services.html">Commercial Moving</a></li>
+                        <li><a href="services.html">Storage Solutions</a></li>
+                        <li><a href="services.html">Packing Services</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><strong>Phone:</strong><br><a href="tel:6045050026" style="color: #ccc;">(604) 505-0026</a></p>
+                    <p style="margin-top: 10px;"><strong>Email:</strong><br><a href="mailto:info@ontime-moving.com" style="color: #ccc;">info@ontime-moving.com</a></p>
+                    <p style="margin-top: 15px;">
+                        <a href="https://www.google.com/search?q=ontime+moving#lrd=0x5485d60c7bda081d:0x31940ea9dfb00809,1" target="_blank" style="color: #ccc;">⭐ Leave us a review on Google</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 OnTime Moving & Storage. All rights reserved. | Licensed & Insured | A+ BBB Accreditation</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Please note we are OnTime in Canada. On Time Moving Inc. in USA is a different company.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
