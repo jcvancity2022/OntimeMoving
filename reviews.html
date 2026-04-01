@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews - OnTime Moving & Storage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d32f2f;
+            --dark-gray: #333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #666;
+            --white: #fff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-hover: 0 4px 20px rgba(0,0,0,0.15);
+            --gold: #ffc107;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background: var(--white);
+        }
+
+        .top-bar {
+            background: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .top-contact {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-contact a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .top-contact a:hover {
+            color: var(--primary);
+        }
+
+        .top-nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .top-nav a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .top-nav a:hover, .top-nav a.active {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white) !important;
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            background: #b71c1c;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            color: var(--white);
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .stats-section {
+            background: var(--white);
+            padding: 40px 20px;
+            box-shadow: var(--shadow);
+            margin: -30px auto 0;
+            max-width: 1100px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--medium-gray);
+        }
+
+        .stars {
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+
+        .content-section {
+            padding: 60px 20px;
+        }
+
+        .content-section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .filter-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--primary);
+            background: var(--white);
+            color: var(--primary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border-left: 4px solid var(--primary);
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .reviewer-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--dark-gray);
+        }
+
+        .review-date {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+        }
+
+        .rating {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .review-text {
+            color: var(--medium-gray);
+            line-height: 1.8;
+            margin-top: 15px;
+        }
+
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #4caf50;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+        }
+
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 40px auto;
+            max-width: 600px;
+        }
+
+        .cta-section {
+            background: var(--primary);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary);
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 40px 20px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            font-size: 1.5rem;
+        }
+
+        .social-links a {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+
+        footer a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .top-contact,
+            .top-nav {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <a href="index.html" class="logo" style="text-decoration: none;">OnTime Moving & Storage</a>
+                <div class="top-contact">
+                    <a href="tel:+16045050026">📞 (604) 505-0026</a>
+                    <a href="mailto:info@ontime-moving.com">✉️ info@ontime-moving.com</a>
+                </div>
+                <nav class="top-nav">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="reviews.html" class="active">Reviews</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="contact.html#quoteForm" class="nav-cta">Free Quote</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Customer Reviews</h1>
+            <p>See what our satisfied customers have to say about their moving experience</p>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="avgRating">5.0</span>
+                    <span class="stars">★★★★★</span>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="totalReviews">0</span>
+                    <div class="stat-label">Total Reviews</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="fiveStarPercent">98%</span>
+                    <div class="stat-label">5-Star Reviews</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="filter-controls">
+                <button class="filter-btn active" onclick="filterReviews('all')">All Reviews</button>
+                <button class="filter-btn" onclick="filterReviews(5)">5 Stars</button>
+                <button class="filter-btn" onclick="filterReviews(4)">4 Stars</button>
+                <button class="filter-btn" onclick="filterReviews('verified')">Verified Only</button>
+            </div>
+
+            <div id="reviewsContainer" class="loading">
+                Loading reviews...
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Share Your Experience</h2>
+            <p>Had a great experience with us? We'd love to hear from you!</p>
+            <a href="#" class="cta-button" onclick="openGoogleReview(); return false;">Write a Review on Google</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>OnTime Moving & Storage</h3>
+                    <p>Professional moving services in the Lower Mainland for over 22 years. Licensed, insured, and trusted by thousands of customers.</p>
+                    <p style="margin-top: 15px;">104-1525 Broadway St<br>Port Coquitlam, BC V3C 6M2</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="contact.html">Contact & Quote</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Residential Moving</a></li>
+                        <li><a href="services.html">Commercial Moving</a></li>
+                        <li><a href="services.html">Storage Solutions</a></li>
+                        <li><a href="services.html">Packing Services</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><strong>Phone:</strong><br><a href="tel:6045050026" style="color: #ccc;">(604) 505-0026</a></p>
+                    <p style="margin-top: 10px;"><strong>Email:</strong><br><a href="mailto:info@ontime-moving.com" style="color: #ccc;">info@ontime-moving.com</a></p>
+                    <p style="margin-top: 15px;">
+                        <a href="https://www.google.com/search?q=ontime+moving#lrd=0x5485d60c7bda081d:0x31940ea9dfb00809,1" target="_blank" style="color: #ccc;">⭐ Leave us a review on Google</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 OnTime Moving & Storage. All rights reserved. | Licensed & Insured | A+ BBB Accreditation</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Please note we are OnTime in Canada. On Time Moving Inc. in USA is a different company.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // API Configuration
+        const API_BASE_URL = 'http://localhost:5000/api';
+        let allReviews = [];
+        let currentFilter = 'all';
+        let googleReviewsUrl = 'https://www.google.com/search?q=ontime+moving#lrd=0x5485d60c7bda081d:0x31940ea9dfb00809,1';
+
+        // Load Google Reviews URL from config
+        async function loadGoogleUrl() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/config`);
+                const data = await response.json();
+                if (data.success && data.config.googleReviews && data.config.googleReviews.url) {
+                    googleReviewsUrl = data.config.googleReviews.url;
+                }
+            } catch (error) {
+                console.log('Using default Google Reviews URL');
+            }
+        }
+
+        // Open Google Reviews
+        function openGoogleReview() {
+            window.open(googleReviewsUrl, '_blank');
+        }
+
+        // Fetch and display reviews
+        async function loadReviews() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/reviews`);
+                const data = await response.json();
+                
+                if (data.success && data.reviews) {
+                    allReviews = data.reviews;
+                    displayReviews(allReviews);
+                    updateStatistics();
+                } else {
+                    showError('Failed to load reviews');
+                }
+            } catch (error) {
+                console.error('Error loading reviews:', error);
+                showError('Unable to load reviews. Please try again later.');
+            }
+        }
+
+        // Display reviews
+        function displayReviews(reviews) {
+            const container = document.getElementById('reviewsContainer');
+            
+            if (!reviews || reviews.length === 0) {
+                container.innerHTML = '<p class="loading">No reviews found.</p>';
+                return;
+            }
+
+            container.className = 'reviews-grid';
+            container.innerHTML = reviews.map(review => `
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <h3>${escapeHtml(review.author_name || 'Anonymous')}</h3>
+                            <div class="review-date">${formatDate(review.created_at)}</div>
+                        </div>
+                        <div class="rating">${generateStars(review.rating)}</div>
+                    </div>
+                    <div class="review-text">${escapeHtml(review.text)}</div>
+                    ${review.verified ? '<span class="verified-badge">✓ Verified Customer</span>' : ''}
+                </div>
+            `).join('');
+        }
+
+        // Generate star rating HTML
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const emptyStars = 5 - fullStars;
+            return '★'.repeat(fullStars) + '☆'.repeat(emptyStars);
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Filter reviews
+        function filterReviews(filter) {
+            currentFilter = filter;
+            
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            let filteredReviews = allReviews;
+
+            if (filter === 'verified') {
+                filteredReviews = allReviews.filter(r => r.verified);
+            } else if (typeof filter === 'number') {
+                filteredReviews = allReviews.filter(r => r.rating === filter);
+            }
+
+            displayReviews(filteredReviews);
+        }
+
+        // Update statistics
+        function updateStatistics() {
+            if (allReviews.length === 0) return;
+
+            // Calculate average rating
+            const avgRating = allReviews.reduce((sum, r) => sum + r.rating, 0) / allReviews.length;
+            document.getElementById('avgRating').textContent = avgRating.toFixed(1);
+
+            // Total reviews
+            document.getElementById('totalReviews').textContent = allReviews.length;
+
+            // Five star percentage
+            const fiveStarCount = allReviews.filter(r => r.rating === 5).length;
+            const fiveStarPercent = Math.round((fiveStarCount / allReviews.length) * 100);
+            document.getElementById('fiveStarPercent').textContent = fiveStarPercent + '%';
+        }
+
+        // Show error message
+        function showError(message) {
+            const container = document.getElementById('reviewsContainer');
+            container.innerHTML = `<div class="error-message">${message}</div>`;
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadGoogleUrl();
+            await loadReviews();
+        });
+    </script>
+</body>
+</html>

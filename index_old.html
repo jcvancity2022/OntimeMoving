@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnTime Moving - Stress-Free Moving in the Lower Mainland</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #d32f2f;
+            --dark-gray: #333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #666;
+            --white: #fff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-hover: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background: var(--white);
+        }
+
+        /* Navigation Header */
+        .top-bar {
+            background: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+
+        .top-contact {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-contact a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .top-contact a:hover {
+            color: var(--primary-red);
+        }
+
+        .top-nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .top-nav a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .top-nav a:hover {
+            color: var(--primary-red);
+        }
+
+        .nav-cta {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            background: #b71c1c;
+            color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--medium-gray);
+            margin-bottom: 40px;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            margin: 10px;
+        }
+
+        .cta-primary:hover {
+            background: #b71c1c;
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .cta-secondary {
+            display: inline-block;
+            color: var(--primary-red);
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            margin: 10px;
+            border: 2px solid var(--primary-red);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            background: var(--primary-red);
+            color: var(--white);
+        }
+
+        /* Google Review Section */
+        .reviews-section {
+            padding: 60px 20px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .reviews-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+
+        .star-rating {
+            font-size: 2rem;
+            color: #ffa000;
+            margin: 20px 0;
+        }
+
+        .rating-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 40px;
+        }
+
+        .review-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .review-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+        }
+
+        .review-stars {
+            color: #ffa000;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--medium-gray);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .review-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Trust Metrics */
+        .trust-metrics {
+            background: var(--light-gray);
+            padding: 60px 20px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .metric-item {
+            padding: 20px;
+        }
+
+        .metric-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            font-weight: 500;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 60px 20px;
+            background: var(--white);
+        }
+
+        .how-it-works h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark-gray);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-red);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+        }
+
+        .step-card p {
+            color: var(--medium-gray);
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 60px 20px;
+            background: var(--light-gray);
+        }
+
+        .services-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+
+        .services-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-red);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+        }
+
+        .service-card p {
+            color: var(--medium-gray);
+            line-height: 1.6;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 60px 20px;
+            background: var(--light-gray);
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark-gray);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 16px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #b71c1c;
+            transform: translateY(-2px);
+        }
+
+        .review-prompt {
+            margin-top: 30px;
+            padding: 25px;
+            background: #fff3e0;
+            border-left: 4px solid var(--primary-red);
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .review-prompt p {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+        }
+
+        .review-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-red);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .review-link:hover {
+            color: #b71c1c;
+        }
+
+        /* Review Submission Form */
+        .review-submit-section {
+            padding: 60px 20px;
+            background: var(--white);
+        }
+
+        .review-submit-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--light-gray);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .review-submit-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+        }
+
+        .review-submit-section .subtitle {
+            text-align: center;
+            color: var(--medium-gray);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .star-rating-input {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            font-size: 2.5rem;
+        }
+
+        .star-rating-input input[type="radio"] {
+            display: none;
+        }
+
+        .star-rating-input label {
+            cursor: pointer;
+            color: #ddd;
+            transition: color 0.2s;
+        }
+
+        .star-rating-input input[type="radio"]:checked ~ label,
+        .star-rating-input label:hover,
+        .star-rating-input label:hover ~ label {
+            color: #ffa000;
+        }
+
+        .star-rating-input {
+            flex-direction: row-reverse;
+            justify-content: center;
+        }
+
+        .star-rating-input label:hover,
+        .star-rating-input label:hover ~ label,
+        .star-rating-input input[type="radio"]:checked ~ label {
+            color: #ffa000;
+        }
+
+        .submit-success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .submit-error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .google-review-cta {
+            background: #fff3cd;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .google-review-cta p {
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+        }
+
+        .review-template-helper {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-red);
+        }
+
+        .template-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            transition: background 0.3s;
+        }
+
+        .template-btn:hover {
+            background: #b71c1c;
+        }
+
+        .template-tips {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+
+        .template-tips strong {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--primary-red);
+        }
+
+        .template-tips ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .template-tips li {
+            margin-bottom: 5px;
+        }
+
+        /* Testimonial Section */
+        .testimonial-section {
+            padding: 60px 20px;
+            background: var(--white);
+        }
+
+        .testimonial-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .testimonial-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-content {
+            padding: 20px;
+        }
+
+        .testimonial-stars {
+            color: #ffa000;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-red);
+        }
+
+        /* Location Section */
+        .location-section {
+            padding: 60px 20px;
+            background: var(--light-gray);
+        }
+
+        .location-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--dark-gray);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-red);
+        }
+
+        .contact-item a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-red);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 40px 20px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            font-size: 1.5rem;
+        }
+
+        .social-links a {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .top-bar-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .top-contact,
+            .top-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-container,
+            .location-container {
+                grid-template-columns: 1fr;
+            }
+
+            .review-buttons {
+                flex-direction: column;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <a href="index.html" class="logo" style="text-decoration: none;">OnTime Moving & Storage</a>
+                <div class="top-contact">
+                    <a href="tel:+16045050026">📞 (604) 505-0026</a>
+                    <a href="mailto:info@ontime-moving.com">✉️ info@ontime-moving.com</a>
+                </div>
+                <nav class="top-nav">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="reviews.html">Reviews</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="#estimate-form" class="nav-cta">Free Estimate</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Stress-Free Moving in the Lower Mainland</h1>
+            <h2>Serving Port Coquitlam & Greater Vancouver for 22+ Years</h2>
+            <a href="#estimate-form" class="cta-primary">Get a Free Estimate</a>
+            <a href="https://www.google.com/search?q=ontime+moving&sca_esv=99a15385a3b5aa7c&sxsrf=ANbL-n7ix07t_DPb8TbYvOihm7StQKPByQ%3A1771565280207&source=hp&ei=4PCXadm1CpTk0PEP3KXi0Aw&iflsig=AFdpzrgAAAAAaZf-8GuZuIO8KZsfXsS3wBimtjOhLUZC&gs_ssp=eJzj4tVP1zc0LCovMEixzEkzYLRSNagwNbEwTTEzSDZPSkk0sDBMsTKoMDa0NDFITbRMSUsyMLAwsPTizc8rycxNVcjNL8vMSwcAqP8Ubw&oq=ontime+moving&gs_lp=Egdnd3Mtd2l6Ig1vbnRpbWUgbW92aW5nKgIIADIOEC4YgAQYxwEYjgUYrwEyBRAAGIAEMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHkjmKVAAWMgicAd4AJABAJgB0gGgAcEMqgEFNi43LjG4AQPIAQD4AQGYAhWgAp0NwgIOEAAYgAQYsQMYgwEYigXCAggQABiABBixA8ICCxAuGIAEGLEDGIMBwgILEC4YgAQY0QMYxwHCAgUQLhiABMICCBAuGIAEGLEDwgILEAAYgAQYsQMYgwHCAgQQABgDwgIMEAAYgAQYsQMYChgLwgIJEAAYgAQYChgLwgIHEAAYgAQYCsICCxAuGIAEGMcBGK8BwgIFECEYoAHCAgsQABiABBiGAxiKBZgDAJIHBjEzLjcuMaAHw3ayBwU2LjcuMbgHhg3CBwYwLjEyLjnIBz6ACAA&sclient=gws-wiz#lrd=0x5485d60c7bda081d:0x31940ea9dfb00809,1,,,," class="cta-secondary" target="_blank">Read Google Reviews</a>
+        </div>
+    </section>
+
+    <!-- Google Review Trust Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="star-rating">★★★★★</div>
+            <p class="rating-text">4.3 out of 5 stars on Google</p>
+
+            <!-- Review cards - dynamically loaded from API, static fallback below -->
+            <div class="review-cards">
+                <!-- Fallback: These reviews will be replaced dynamically if API is available -->
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"On Time moved my elderly parents. They worked hard for the entire move, I almost can't believe the pace they maintained. Even though they were busy and sweating, one of them found me an alan key when I asked my family for one, and if my parents asked for something, one of them would stop and help. Great service and hard workers."</p>
+                    <p class="review-author">— Mark Richardson</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"This has been the best moving experience I have ever had. Ronald personally came to my apartment and viewed and took pictures of all my furniture. He told me the size of the moving truck and how many crew members he would need. Best moving company in the Lower Mainland!"</p>
+                    <p class="review-author">— Thomas Leonard</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Ronald (owner) is very personable and professional. His 3 staff (Mike, Ian, and Darren (?)) were very hard working, careful, polite and personable as well. I would highly recommend this moving company."</p>
+                    <p class="review-author">— Cindy Lukey</p>
+                </div>
+            </div>
+
+            <div class="review-buttons">
+                <a href="#submit-review" class="cta-primary" onclick="scrollToReviewForm(event)">Leave a Review</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Metrics - dynamically loaded from config.json -->
+    <section class="trust-metrics">
+        <div class="container">
+            <div class="metrics-grid">
+                <!-- Fallback: These metrics will be replaced from config.json if API is available -->
+                <div class="metric-item">
+                    <div class="metric-icon">📅</div>
+                    <div class="metric-number">22+</div>
+                    <div class="metric-label">Years in Business</div>
+                </div>
+
+                <div class="metric-item">
+                    <div class="metric-icon">😊</div>
+                    <div class="metric-number">11,000+</div>
+                    <div class="metric-label">Happy Customers</div>
+                </div>
+
+                <div class="metric-item">
+                    <div class="metric-icon">🏆</div>
+                    <div class="metric-number">A+</div>
+                    <div class="metric-label">BBB Accreditation</div>
+                </div>
+
+                <div class="metric-item">
+                    <div class="metric-icon">✅</div>
+                    <div class="metric-number">100%</div>
+                    <div class="metric-label">Licensed & Insured</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2>It's Easy Working With Us</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Make a Request</h3>
+                    <p>Fill in the estimate form, email us directly at info@ontime-moving.com, or simply call (604) 505-0026. Once received, we'll set up an appointment to view your home.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Get Your Estimate</h3>
+                    <p>We perform an in-person estimate at your home to fully understand your needs. You'll receive a follow-up email with a detailed checklist and full breakdown of service charges.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Book Your Move</h3>
+                    <p>Once you approve the plan, pay a deposit to secure your spot. We'll send a reminder prior to service and bring all necessary supplies to ensure a smooth move.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Get Settled</h3>
+                    <p>Your move is complete! Settle the invoice with check, credit card, or e-transfer. Need storage? We'll containerize everything at your door, saving time and money.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2>We Make a Difference</h2>
+            <p class="services-subtitle">We aim at serving families who care for quality, service and reliability. Serving over 11,000 families across the Lower Mainland for 22+ years.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🚚</div>
+                    <h3>Complete Moving</h3>
+                    <p>Door-to-door local moving across Lower Mainland, as well as long distance relocation to BC Interior or surrounding islands. Fully trained crew, highly organized and efficient.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <h3>Customized Packing</h3>
+                    <p>Complete or partial packing assistance to protect your belongings. We offer customized crates or containers for fragile items and provide red-carpet service.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Containerized Storage</h3>
+                    <p>Ideal alternative to self-storage and Steelbox. We containerize at your door, saving 30% on handling costs. 8,000 sq ft secure warehouse with 100 containers available.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🛍️</div>
+                    <h3>Shop Supplies</h3>
+                    <p>One-stop shopping for all moving supplies. Boxes, tape, bubble wrap, and everything you need for self-packing to make your move smooth and secure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estimate Form Section -->
+    <section class="form-section" id="estimate-form">
+        <div class="container">
+            <div class="form-container">
+                <h2>Get Your Free Estimate</h2>
+                <form action="#" method="POST">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="move-date">Preferred Move Date *</label>
+                        <input type="date" id="move-date" name="move-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="from-address">Moving From *</label>
+                        <input type="text" id="from-address" name="from-address" placeholder="Street Address, City" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="to-address">Moving To *</label>
+                        <input type="text" id="to-address" name="to-address" placeholder="Street Address, City" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Additional Notes</label>
+                        <textarea id="notes" name="notes" placeholder="Tell us about your move (e.g., number of bedrooms, special items, stairs, etc.)"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Get Free Estimate</button>
+                </form>
+
+                <div class="review-prompt">
+                    <p><strong>Have we served you before?</strong><br>We'd really appreciate an honest Google review!</p>
+                    <a href="https://www.google.com/search?q=ontime+moving&sca_esv=99a15385a3b5aa7c&sxsrf=ANbL-n7ix07t_DPb8TbYvOihm7StQKPByQ%3A1771565280207&source=hp&ei=4PCXadm1CpTk0PEP3KXi0Aw&iflsig=AFdpzrgAAAAAaZf-8GuZuIO8KZsfXsS3wBimtjOhLUZC&gs_ssp=eJzj4tVP1zc0LCovMEixzEkzYLRSNagwNbEwTTEzSDZPSkk0sDBMsTKoMDa0NDFITbRMSUsyMLAwsPTizc8rycxNVcjNL8vMSwcAqP8Ubw&oq=ontime+moving&gs_lp=Egdnd3Mtd2l6Ig1vbnRpbWUgbW92aW5nKgIIADIOEC4YgAQYxwEYjgUYrwEyBRAAGIAEMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHkjmKVAAWMgicAd4AJABAJgB0gGgAcEMqgEFNi43LjG4AQPIAQD4AQGYAhWgAp0NwgIOEAAYgAQYsQMYgwEYigXCAggQABiABBixA8ICCxAuGIAEGLEDGIMBwgILEC4YgAQY0QMYxwHCAgUQLhiABMICCBAuGIAEGLEDwgILEAAYgAQYsQMYgwHCAgQQABgDwgIMEAAYgAQYsQMYChgLwgIJEAAYgAQYChgLwgIHEAAYgAQYCsICCxAuGIAEGMcBGK8BwgIFECEYoAHCAgsQABiABBiGAxiKBZgDAJIHBjEzLjcuMaAHw3ayBwU2LjcuMbgHhg3CBwYwLjEyLjnIBz6ACAA&sclient=gws-wiz#lrd=0x5485d60c7bda081d:0x31940ea9dfb00809,1,,,," class="review-link" target="_blank">
+                        <span>⭐</span>
+                        <span>Leave a Google Review</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Review Submission Section -->
+    <section class="review-submit-section" id="submit-review">
+        <div class="container">
+            <div class="review-submit-container">
+                <h2>Share Your Experience</h2>
+                <p class="subtitle">Write your review below, then we'll help you post it to Google Reviews</p>
+
+                <form id="review-form">
+                    <div class="form-group" style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 4px solid #2196F3; margin-bottom: 20px;">
+                        <p style="margin: 0; color: #0d47a1; line-height: 1.6;">
+                            📝 <strong>How it works:</strong> Write your review here, click submit, and we'll copy it to your clipboard. Then Google Reviews will open where you can:
+                            <br>• Sign in with your Google account (your name will be used)
+                            <br>• Click the stars to rate us
+                            <br>• Paste your review and click Post
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review-text">Your Review *</label>
+                        <div class="review-template-helper">
+                            <button type="button" class="template-btn" onclick="useReviewTemplate()">📝 Use Writing Template</button>
+                            <div class="template-tips">
+                                <strong>💡 Tips for a helpful review:</strong>
+                                <ul>
+                                    <li>Mention the crew members by name (Ronald, Ian, Mike, etc.)</li>
+                                    <li>Describe the service quality (care, efficiency, professionalism)</li>
+                                    <li>Share specific details about your experience</li>
+                                    <li>Mention if Ronald did an in-person estimate</li>
+                                    <li>Note if everything went as planned or exceeded expectations</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <textarea id="review-text" name="review-text" rows="8" 
+                                  placeholder="Tell us about your experience with OnTime Moving..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="also-post-google" name="also-post-google" checked>
+                            ✅ Also post to Google Reviews (opens automatically with your review ready to paste)
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submit-review-btn">Submit Review</button>
+                </form>
+
+                <div id="submit-success" class="submit-success">
+                    <strong>✅ Thank you for your review!</strong>
+                    <p>Your review has been submitted successfully.</p>
+                </div>
+
+                <div id="submit-error" class="submit-error">
+                    <strong>❌ Error</strong>
+                    <p id="error-message">Something went wrong. Please try again.</p>
+                </div>
+
+                <div id="google-cta" class="google-review-cta" style="display: none;">
+                    <p><strong>🚀 Redirecting to Google Reviews...</strong></p>
+                    <p>✅ <strong>Your review text is copied!</strong> You're being redirected to complete your Google review.</p>
+                    
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: left;">
+                        <p style="margin: 0 0 10px 0; font-weight: 600;">📱 Final Steps on Google:</p>
+                        <ol style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                            <li><strong>Sign in</strong> with your Google account if prompted</li>
+                            <li><strong>Click the ⭐ stars</strong> to select your rating (this is where you rate us!)</li>
+                            <li><strong>Paste your review</strong> (<kbd>Ctrl+V</kbd> or <kbd>Cmd+V</kbd>) - <em>already copied!</em></li>
+                            <li><strong>Click "Post"</strong> to publish your review</li>
+                        </ol>
+                    </div>
+
+                    <div style="text-align: center; margin: 20px 0;">
+                        <div style="display: inline-block; padding: 10px 20px; background: #4CAF50; color: white; border-radius: 5px; font-weight: 600;">
+                            ⏱️ Redirecting in <span id="countdown">3</span> seconds...
+                        </div>
+                    </div>
+
+                    <button onclick="openGoogleReview()" class="cta-primary" style="width: auto; display: inline-block; cursor: pointer; border: none; margin: 10px auto;">
+                        📝 Go to Google Now (Don't Wait)
+                    </button>
+                    
+                    <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                        💡 <strong>Didn't redirect?</strong> Click the button above or check if pop-ups are blocked.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Feature - dynamically loaded from database  -->
+    <section class="testimonial-section">
+        <div class="container">
+            <div class="testimonial-container">
+                <div>
+                    <img src="https://via.placeholder.com/500x600/f5f5f5/666?text=Customer+Testimonial" alt="Customer Thank You Note" class="testimonial-image">
+                </div>
+                <div class="testimonial-content">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <!-- Fallback: This testimonial will be replaced dynamically if API is available -->
+                    <p class="testimonial-text">"Ronald and his crew fantastic. They listened to our needs. The service was excellent and very thorough. Ronald came for an initial assessment and provided great tips on supplies etc for packing. He then returned 2 days prior to the move. Simply outstanding professional service!"</p>
+                    <p class="testimonial-author">— Pardees Z</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact Section -->
+    <section class="location-section" id="contact">
+        <div class="container">
+            <div class="location-container">
+                <div class="contact-info">
+                    <h2>Contact Us</h2>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>104-1525 Broadway St, Port Coquitlam, BC V3C 6P6</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <a href="tel:+16045050026">(604) 505-0026</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <a href="mailto:info@ontime-moving.com">info@ontime-moving.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🏆</span>
+                        <span>BBB Accredited Business - A+ Rating</span>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2604.5!2d-122.7808!3d49.2627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDnCsDE1JzQ1LjciTiAxMjLCsDQ2JzUwLjkiVw!5e0!3m2!1sen!2sca!4v1234567890"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>OnTime Moving & Storage</h3>
+                    <p>Professional moving services in the Lower Mainland for over 22 years. Licensed, insured, and trusted by thousands of customers.</p>
+                    <p style="margin-top: 15px;">104-1525 Broadway St<br>Port Coquitlam, BC V3C 6M2</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="contact.html">Contact & Quote</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Residential Moving</a></li>
+                        <li><a href="services.html">Commercial Moving</a></li>
+                        <li><a href="services.html">Storage Solutions</a></li>
+                        <li><a href="services.html">Packing Services</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><strong>Phone:</strong><br><a href="tel:6045050026" style="color: #ccc;">(604) 505-0026</a></p>
+                    <p style="margin-top: 10px;"><strong>Email:</strong><br><a href="mailto:info@ontime-moving.com" style="color: #ccc;">info@ontime-moving.com</a></p>
+                    <p style="margin-top: 15px;">
+                        <a href="https://www.google.com/search?q=ontime+moving#lrd=0x5485d60c7bda081d:0x31940ea9dfb00809,1" target="_blank" style="color: #ccc;">⭐ Leave us a review on Google</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 OnTime Moving & Storage. All rights reserved. | Licensed & Insured | A+ BBB Accreditation</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Please note we are OnTime in Canada. On Time Moving Inc. in USA is a different company.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="review_loader.js"></script>
+    <script>
+        // Global Google Reviews URL (will be loaded from config or use default)
+        let googleReviewsUrl = 'https://www.google.com/search?q=ontime+moving#lrd=0x5485d60c7bda081d:0x31940ea9dfb00809,1';
+
+        // Load Google URL from config
+        async function loadGoogleUrl() {
+            try {
+                const response = await fetch('http://localhost:5000/api/config');
+                const data = await response.json();
+                if (data.success && data.config.googleReviews && data.config.googleReviews.url) {
+                    googleReviewsUrl = data.config.googleReviews.url;
+                    console.log('✅ Google Reviews URL loaded from config');
+                }
+            } catch (error) {
+                console.log('ℹ️ Using default Google Reviews URL');
+            }
+        }
+
+        // Function to open Google Reviews (called by button)
+        function openGoogleReview() {
+            window.open(googleReviewsUrl, '_blank');
+            console.log('📝 Manually opened Google Reviews');
+        }
+
+        // Load config on page load
+        loadGoogleUrl();
+
+        // Scroll to review form function
+        function scrollToReviewForm(event) {
+            event.preventDefault();
+            const reviewForm = document.getElementById('submit-review');
+            if (reviewForm) {
+                reviewForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Focus on the review text field after scrolling
+                setTimeout(() => {
+                    document.getElementById('review-text').focus();
+                }, 800);
+            }
+        }
+
+        // Review writing template function
+        function useReviewTemplate() {
+            const textarea = document.getElementById('review-text');
+            const template = `I recently used OnTime Moving for [describe your move - e.g., "moving from my 2-bedroom condo to a house in Coquitlam"].
+
+Ronald [mention if he did an in-person estimate or any special planning].
+
+The crew [mention crew members if you remember names - e.g., "including Mike and Ian"] arrived [on time/early] and were [professional/friendly/efficient].
+
+They took great care with [mention specific items or general belongings]. [Add specific details about what impressed you - e.g., "They wrapped all furniture carefully and used red carpet to protect my floors."]
+
+[Mention the outcome - e.g., "Everything arrived safely at my new home" or "The move went smoothly and finished ahead of schedule."]
+
+I [would/would highly] recommend OnTime Moving for anyone in the Lower Mainland looking for [reliable/professional/careful] movers.`;
+
+            textarea.value = template;
+            textarea.focus();
+            textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Review submission handler
+        document.getElementById('review-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-review-btn');
+            const successMsg = document.getElementById('submit-success');
+            const errorMsg = document.getElementById('submit-error');
+            const googleCTA = document.getElementById('google-cta');
+            const alsoPostGoogle = document.getElementById('also-post-google').checked;
+            
+            // Get form data
+            const formData = {
+                author_name: 'Google User',  // Will be replaced by actual Google account name
+                rating: 5,  // Default for database, actual rating done on Google
+                review_text: document.getElementById('review-text').value,
+                review_date: new Date().toISOString().split('T')[0],
+                // Note: author_name and rating will be set when user posts to Google
+                // Stored locally as placeholder for tracking purposes only
+                author_name: 'Pending Google Review',
+                rating: 0  // 0 indicates not yet rated (will be rated on Google)
+            };
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            
+            // Hide previous messages
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            googleCTA.style.display = 'none';
+            
+            try {
+                // Try to submit to API if available
+                const response = await fetch('http://localhost:5000/api/reviews', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Review submitted to database:', data);
+                    
+                    // Show success message
+                    successMsg.style.display = 'block';
+                    
+                    // Handle Google Reviews posting
+                    if (alsoPostGoogle) {
+                        // Copy review text to clipboard for easy pasting
+                        try {
+                            await navigator.clipboard.writeText(formData.review_text);
+                            console.log('✅ Review text copied to clipboard');
+                        } catch (err) {
+                            console.log('Clipboard copy failed:', err);
+                        }
+                        
+                        // Show Google CTA with countdown
+                        googleCTA.style.display = 'block';
+                        
+                        // Scroll to CTA
+                        googleCTA.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        // Countdown timer
+                        let countdown = 3;
+                        const countdownEl = document.getElementById('countdown');
+                        const countdownInterval = setInterval(() => {
+                            countdown--;
+                            if (countdownEl) countdownEl.textContent = countdown;
+                            if (countdown <= 0) {
+                                clearInterval(countdownInterval);
+                            }
+                        }, 1000);
+                        
+                        // Auto-redirect to Google Reviews after 3 seconds
+                        setTimeout(() => {
+                            window.open(googleReviewsUrl, '_blank');
+                            console.log('✅ Auto-redirected to Google Reviews');
+                            // Update message
+                            if (googleCTA.querySelector('p:first-child')) {
+                                googleCTA.querySelector('p:first-child').innerHTML = '<strong>✅ Window Opened!</strong>';
+                            }
+                        }, 3000);
+                    }
+                    
+                    // Reset form
+                    document.getElementById('review-form').reset();
+                    
+                    // Scroll to success message
+                    successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    throw new Error('Failed to submit review');
+                }
+            } catch (error) {
+                console.log('API not available, showing Google review option');
+                
+                // Copy review text to clipboard
+                try {
+                    await navigator.clipboard.writeText(formData.review_text);
+                    successMsg.innerHTML = '<strong>✅ Thank you!</strong><p>Your review is saved locally. Redirecting to Google Reviews...</p>';
+                } catch (err) {
+                    successMsg.innerHTML = '<strong>✅ Thank you!</strong><p>Redirecting to Google Reviews...</p>';
+                }
+                
+                successMsg.style.display = 'block';
+                googleCTA.style.display = 'block';
+                
+                // Scroll to CTA
+                googleCTA.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Store review data in localStorage as backup
+                const reviews = JSON.parse(localStorage.getItem('pendingReviews') || '[]');
+                reviews.push({
+                    ...formData,
+                    timestamp: new Date().toISOString(),
+                    needsGooglePost: true
+                });
+                localStorage.setItem('pendingReviews', JSON.stringify(reviews));
+                
+                // Countdown timer
+                let countdown = 3;
+                const countdownEl = document.getElementById('countdown');
+                const countdownInterval = setInterval(() => {
+                    countdown--;
+                    if (countdownEl) countdownEl.textContent = countdown;
+                    if (countdown <= 0) {
+                        clearInterval(countdownInterval);
+                    }
+                }, 1000);
+                
+                // Auto-redirect to Google Reviews
+                setTimeout(() => {
+                    window.open(googleReviewsUrl, '_blank');
+                    console.log('✅ Auto-redirected to Google Reviews (API unavailable)');
+                    if (googleCTA.querySelector('p:first-child')) {
+                        googleCTA.querySelector('p:first-child').innerHTML = '<strong>✅ Window Opened!</strong>';
+                    }
+                }, 3000);
+                
+                // Reset form
+                document.getElementById('review-form').reset();
+            }
+            
+            // Re-enable submit button
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Review';
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Estimate form submission handler (placeholder)
+        document.querySelector('#estimate-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We will contact you shortly with your free estimate.');
+            // In production, this would submit to your backend
+        });
+    </script>
+</body>
+</html>

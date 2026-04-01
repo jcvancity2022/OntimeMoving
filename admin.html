@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Admin - OnTime Moving</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d32f2f;
+            --primary-dark: #b71c1c;
+            --primary-light: #ffebee;
+            --dark-gray: #111827;
+            --light-gray: #f9fafb;
+            --medium-gray: #6b7280;
+            --white: #fff;
+            --success: #4caf50;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--medium-gray);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--dark-gray);
+        }
+
+        .btn-sm {
+            padding: 5px 12px;
+            font-size: 0.9rem;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: var(--white);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: var(--white);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2);
+            margin-bottom: 40px;
+        }
+
+        .dashboard-title {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--medium-gray);
+            font-size: 1.1rem;
+        }
+
+        .filters {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            align-items: end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+        }
+
+        .filter-group input,
+        .filter-group select {
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 1.1rem;
+        }
+
+        .bookings-table {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            font-size: 1.05rem;
+        }
+
+        th {
+            background: var(--light-gray);
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        tr:hover {
+            background: #fafafa;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-confirmed {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: var(--medium-gray);
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 50px;
+            color: var(--medium-gray);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .close-modal {
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--medium-gray);
+        }
+
+        .detail-row {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--medium-gray);
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            color: var(--dark-gray);
+        }
+
+        @media (max-width: 768px) {
+            .table-responsive {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 1000px;
+            }
+
+            .filter-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">� OnTime Moving - Admin Dashboard</div>
+            <div class="header-actions">
+                <span id="userDisplay" style="margin-right: 15px; color: var(--medium-gray);"></span>
+                <button class="btn btn-secondary btn-sm" onclick="refreshData()">🔄 Refresh</button>
+                <button class="btn btn-danger btn-sm" onclick="handleLogout()">🚪 Logout</button>
+                <a href="index.html" class="btn btn-secondary btn-sm">🏠 Website</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Booking Management Dashboard</h1>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem;">Manage and track all moving service bookings</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="statTotal">-</div>
+                <div class="stat-label">Total Bookings</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="statPending">-</div>
+                <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="statConfirmed">-</div>
+                <div class="stat-label">Confirmed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="statCompleted">-</div>
+                <div class="stat-label">Completed</div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="searchInput">Search</label>
+                    <input type="text" id="searchInput" placeholder="Search name, phone, email...">
+                </div>
+                <div class="filter-group">
+                    <label for="statusFilter">Status</label>
+                    <select id="statusFilter">
+                        <option value="">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="dateFilter">Move Date</label>
+                    <input type="date" id="dateFilter">
+                </div>
+                <div class="filter-group">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
+                </div>
+                <div class="filter-group">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-secondary" onclick="clearFilters()">Clear</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bookings Table -->
+        <div class="bookings-table">
+            <div class="table-header">
+                <div class="table-title">All Bookings</div>
+                <button class="btn btn-primary btn-sm" onclick="refreshData()">⟳ Reload</button>
+            </div>
+            <div class="table-responsive">
+                <div id="loadingIndicator" class="loading">Loading bookings...</div>
+                <div id="noDataIndicator" class="no-data" style="display: none;">No bookings found</div>
+                <table id="bookingsTable" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer</th>
+                            <th>Phone</th>
+                            <th>From → To</th>
+                            <th>Move Date</th>
+                            <th>Size</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Booking Details</h2>
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+            </div>
+            <div id="modalBody">
+                <!-- Details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+        let allBookings = [];
+        let currentUser = null;
+
+        // ==================== AUTHENTICATION ====================
+        
+        function getAuthToken() {
+            return localStorage.getItem('sessionToken') || sessionStorage.getItem('sessionToken');
+        }
+
+        function setAuthHeader() {
+            const token = getAuthToken();
+            return {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            };
+        }
+
+        async function checkAuthentication() {
+            const token = getAuthToken();
+            
+            if (!token) {
+                redirectToLogin();
+                return false;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/verify`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    currentUser = result.user;
+                    displayUserInfo(currentUser);
+                    return true;
+                } else {
+                    redirectToLogin();
+                    return false;
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                redirectToLogin();
+                return false;
+            }
+        }
+
+        function displayUserInfo(user) {
+            const userDisplay = document.getElementById('userDisplay');
+            if (userDisplay) {
+                userDisplay.textContent = `👤 ${user.full_name || user.username}`;
+            }
+        }
+
+        function redirectToLogin() {
+            localStorage.removeItem('sessionToken');
+            sessionStorage.removeItem('sessionToken');
+            localStorage.removeItem('userInfo');
+            window.location.href = 'login.html';
+        }
+
+        async function handleLogout() {
+            if (!confirm('Are you sure you want to logout?')) {
+                return;
+            }
+
+            const token = getAuthToken();
+            
+            try {
+                await fetch(`${API_BASE_URL}/auth/logout`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+
+            redirectToLogin();
+        }
+
+        // Load bookings on page load
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Check authentication first
+            const isAuthenticated = await checkAuthentication();
+            if (isAuthenticated) {
+                loadBookings();
+            }
+        });
+
+        async function loadBookings() {
+            try {
+                showLoading();
+                const response = await fetch(`${API_BASE_URL}/bookings`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    allBookings = result.bookings;
+                    displayBookings(allBookings);
+                    updateStats(allBookings);
+                } else {
+                    showError('Failed to load bookings: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error loading bookings:', error);
+                showError('Failed to connect to the booking system. Make sure the API server is running.');
+            }
+        }
+
+        function displayBookings(bookings) {
+            const tbody = document.getElementById('bookingsTableBody');
+            const table = document.getElementById('bookingsTable');
+            const noData = document.getElementById('noDataIndicator');
+            const loading = document.getElementById('loadingIndicator');
+            
+            loading.style.display = 'none';
+            
+            if (bookings.length === 0) {
+                table.style.display = 'none';
+                noData.style.display = 'block';
+                return;
+            }
+            
+            table.style.display = 'table';
+            noData.style.display = 'none';
+            
+            tbody.innerHTML = bookings.map(booking => `
+                <tr>
+                    <td>${booking.id}</td>
+                    <td>
+                        <strong>${booking.customer_name}</strong><br>
+                        <small>${booking.email}</small>
+                    </td>
+                    <td>${booking.phone}</td>
+                    <td>
+                        <small>
+                            <strong>From:</strong> ${booking.moving_from}<br>
+                            <strong>To:</strong> ${booking.moving_to}
+                        </small>
+                    </td>
+                    <td>${booking.move_date}${booking.preferred_time ? '<br><small>' + booking.preferred_time + '</small>' : ''}</td>
+                    <td>${booking.move_size || 'N/A'}</td>
+                    <td><span class="status-badge status-${booking.status}">${booking.status}</span></td>
+                    <td><small>${formatDate(booking.created_at)}</small></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn btn-sm btn-primary" onclick="viewBooking(${booking.id})">View</button>
+                            <button class="btn btn-sm btn-success" onclick="updateStatus(${booking.id}, 'confirmed')">✓</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteBooking(${booking.id})">✕</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateStats(bookings) {
+            const total = bookings.length;
+            const pending = bookings.filter(b => b.status === 'pending').length;
+            const confirmed = bookings.filter(b => b.status === 'confirmed').length;
+            const completed = bookings.filter(b => b.status === 'completed').length;
+            
+            document.getElementById('statTotal').textContent = total;
+            document.getElementById('statPending').textContent = pending;
+            document.getElementById('statConfirmed').textContent = confirmed;
+            document.getElementById('statCompleted').textContent = completed;
+        }
+
+        async function applyFilters() {
+            const search = document.getElementById('searchInput').value.trim();
+            const status = document.getElementById('statusFilter').value;
+            const date = document.getElementById('dateFilter').value;
+            
+            let url = `${API_BASE_URL}/bookings`;
+            const params = new URLSearchParams();
+            
+            if (search) params.append('search', search);
+            if (status) params.append('status', status);
+            if (date) params.append('date', date);
+            
+            if (params.toString()) {
+                url += '?' + params.toString();
+            }
+            
+            try {
+                showLoading();
+                const response = await fetch(url);
+                const result = await response.json();
+                
+                if (result.success) {
+                    displayBookings(result.bookings);
+                } else {
+                    showError('Filter failed: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error applying filters:', error);
+                showError('Failed to apply filters');
+            }
+        }
+
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('statusFilter').value = '';
+            document.getElementById('dateFilter').value = '';
+            displayBookings(allBookings);
+        }
+
+        async function viewBooking(id) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/booking/${id}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    showBookingDetails(result.booking);
+                } else {
+                    alert('Failed to load booking details');
+                }
+            } catch (error) {
+                console.error('Error loading booking:', error);
+                alert('Failed to load booking details');
+            }
+        }
+
+        function showBookingDetails(booking) {
+            const modal = document.getElementById('detailModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <div class="detail-row">
+                    <div class="detail-label">Booking ID</div>
+                    <div class="detail-value">#${booking.id}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Customer Name</div>
+                    <div class="detail-value">${booking.customer_name}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Phone</div>
+                    <div class="detail-value"><a href="tel:${booking.phone}">${booking.phone}</a></div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Email</div>
+                    <div class="detail-value"><a href="mailto:${booking.email}">${booking.email}</a></div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Moving From</div>
+                    <div class="detail-value">${booking.moving_from}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Moving To</div>
+                    <div class="detail-value">${booking.moving_to}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Move Date</div>
+                    <div class="detail-value">${booking.move_date}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Move Size</div>
+                    <div class="detail-value">${booking.move_size || 'Not specified'}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Preferred Time</div>
+                    <div class="detail-value">${booking.preferred_time || 'Not specified'}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Special Instructions</div>
+                    <div class="detail-value">${booking.special_instructions || 'None'}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Notes</div>
+                    <div class="detail-value">${booking.notes || 'None'}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Status</div>
+                    <div class="detail-value">
+                        <span class="status-badge status-${booking.status}">${booking.status}</span>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Created</div>
+                    <div class="detail-value">${formatDate(booking.created_at)}</div>
+                </div>
+                <div style="margin-top: 20px; display: flex; gap: 10px;">
+                    <button class="btn btn-success" onclick="updateStatus(${booking.id}, 'confirmed'); closeModal();">Confirm</button>
+                    <button class="btn btn-warning" onclick="updateStatus(${booking.id}, 'completed'); closeModal();">Complete</button>
+                    <button class="btn btn-danger" onclick="updateStatus(${booking.id}, 'cancelled'); closeModal();">Cancel</button>
+                    <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.remove('active');
+        }
+
+        async function updateStatus(id, status) {
+            if (!confirm(`Change booking #${id} status to "${status}"?`)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/booking/${id}/status`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ status })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Status updated successfully');
+                    loadBookings();
+                } else {
+                    alert('Failed to update status: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error updating status:', error);
+                alert('Failed to update status');
+            }
+        }
+
+        async function deleteBooking(id) {
+            if (!confirm(`Are you sure you want to delete booking #${id}? This cannot be undone.`)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/booking/${id}`, {
+                    method: 'DELETE'
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Booking deleted successfully');
+                    loadBookings();
+                } else {
+                    alert('Failed to delete booking: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error deleting booking:', error);
+                alert('Failed to delete booking');
+            }
+        }
+
+        function refreshData() {
+            loadBookings();
+        }
+
+        function showLoading() {
+            document.getElementById('loadingIndicator').style.display = 'block';
+            document.getElementById('bookingsTable').style.display = 'none';
+            document.getElementById('noDataIndicator').style.display = 'none';
+        }
+
+        function showError(message) {
+            const loading = document.getElementById('loadingIndicator');
+            loading.textContent = message;
+            loading.style.color = 'var(--danger)';
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'N/A';
+            const date = new Date(dateString);
+            return date.toLocaleString();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('detailModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

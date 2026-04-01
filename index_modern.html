@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnTime Moving - Fast & Reliable Moving in Vancouver</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#" class="logo">OnTime Moving</a>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#book">Book Now</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Fast & Reliable Moving in Vancouver</h1>
+                <p class="hero-description">
+                    Professional movers who care about your belongings. 
+                    Get a quote in seconds and book your move today.
+                </p>
+                <a href="#book" class="btn btn-primary btn-large">Get a Free Quote</a>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">5.0</div>
+                        <div class="stat-label">Rating on Google</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>Residential Moving</h3>
+                    <p>From studio apartments to large homes, we handle it all with care.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Commercial Moving</h3>
+                    <p>Minimize downtime with our efficient office relocation services.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <h3>Packing Services</h3>
+                    <p>Professional packing to keep your items safe during transport.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚛</div>
+                    <h3>Long Distance</h3>
+                    <p>Moving across BC or Canada? We've got you covered.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Get a Quote</h3>
+                    <p>Fill out our simple form and get an instant estimate.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Schedule Your Move</h3>
+                    <p>Pick a date and time that works for you.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>We Handle Everything</h3>
+                    <p>Sit back and relax while we move your belongings safely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section id="book" class="booking-section">
+        <div class="container">
+            <div class="booking-content">
+                <div class="booking-header">
+                    <h2>Book Your Move Today</h2>
+                    <p>Get started in just a few minutes. We'll confirm your booking within 24 hours.</p>
+                </div>
+                
+                <form id="bookingForm" class="booking-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customer_name">Your Name</label>
+                            <input type="text" id="customer_name" name="customer_name" required 
+                                   placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required 
+                                   placeholder="(604) 555-1234">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required 
+                               placeholder="john@example.com">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="moving_from">Moving From</label>
+                            <input type="text" id="moving_from" name="moving_from" required 
+                                   placeholder="123 Main St, Vancouver">
+                        </div>
+                        <div class="form-group">
+                            <label for="moving_to">Moving To</label>
+                            <input type="text" id="moving_to" name="moving_to" required 
+                                   placeholder="456 Oak Ave, Burnaby">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="move_date">Move Date</label>
+                            <input type="date" id="move_date" name="move_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="move_size">Property Size</label>
+                            <select id="move_size" name="move_size" required>
+                                <option value="">Select size</option>
+                                <option value="studio">Studio Apartment</option>
+                                <option value="1-bedroom">1 Bedroom</option>
+                                <option value="2-bedroom">2 Bedroom</option>
+                                <option value="3-bedroom">3 Bedroom</option>
+                                <option value="house">House (4+ Bedrooms)</option>
+                                <option value="office">Office/Commercial</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="special_instructions">Special Instructions (Optional)</label>
+                        <textarea id="special_instructions" name="special_instructions" rows="4"
+                                  placeholder="Any special requirements? Heavy items, stairs, parking restrictions, etc."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-large btn-full">
+                        Get Your Free Quote
+                    </button>
+
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">
+                        "On Time moved my elderly parents. They worked hard for the entire move. 
+                        Great service and hard workers!"
+                    </p>
+                    <div class="review-author">Mark Richardson</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">
+                        "This has been the best moving experience I have ever had. 
+                        Ronald personally came and assessed everything professionally."
+                    </p>
+                    <div class="review-author">Thomas Leonard</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">
+                        "Very personable and professional. The staff were hard working, 
+                        careful, and polite. Highly recommend!"
+                    </p>
+                    <div class="review-author">Cindy Lukey</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>OnTime Moving</h3>
+                    <p>Professional moving services in Vancouver and the Lower Mainland.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Phone: (604) 505-0026</p>
+                    <p>Email: info@ontime-moving.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <p>Vancouver, Burnaby, Richmond, Surrey, and surrounding areas</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OnTime Moving. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
